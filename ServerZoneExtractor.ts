@@ -6,7 +6,7 @@ export class ServerZoneExtractor {
         const raw = this.getRaw(url);
 
         // Some local client.
-        if (raw === 'http://localhost:9009')
+        if (!raw || raw === 'http://localhost:9009')
             return ServerZone.LOC;
 
         const zone = this.extractZone(raw);
