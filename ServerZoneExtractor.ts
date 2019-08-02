@@ -14,15 +14,16 @@ export class ServerZoneExtractor {
         return this.validateZone(zone);
     }
 
-    private static getRaw(url:string) {
-        const raw = url
-            .split('.')
-            .pop();
+    private static getRaw(url:string):string {
+        try {
+            const raw = url
+                .split('.')
+                .pop();
 
-        if (raw)
-            return raw;
-
-        throw new Error('Got empty DB server zone raw.');
+            return raw || '';
+        } catch (e) {
+            return '';
+        }
     }
 
     private static extractZone(raw:string) {
